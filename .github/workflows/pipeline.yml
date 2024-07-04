@@ -1,0 +1,39 @@
+name: Deploying Code
+on: push
+jobs:
+    test-connectivity:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        - name: Test SSH
+          run: |
+            echo "-----BEGIN RSA PRIVATE KEY-----
+            MIIEpAIBAAKCAQEAksJPJHOWzj10hKaeCnSRlJo3O+TXsIkTvQ5VxBa/y42tJmnBgvwrJKJxXShk
+            t+zW/VV1zjx+8/a6d32N1CqgGmPNrta1jteCG7kvzbEWHc3Fgo09D/jq9pkCuCigw1LMezHZ6zfs
+            VX587EJblx4uEq3/oKboXYRWQAs6SgDIowaNnPGUcimxaTQJ1jiXP+QJQNGWTx87QjcEB18uHuxE
+            Kp5mk8Gos0Dcqea13kBXMh1AO+ARg0uuSaOt2MBaZgdx1c+gE9soRTod4so8jZ+AwkqQEz46PM+K
+            9dqToLoKWaQTcqVNOTeou58NShoW8Kiqqkq3gCAp93SdOGR/LHXAtwIDAQABAoIBAAuywWw+an72
+            FxubzG047YHS6SQ1EZxY0OH5Co0e4xruqCavt2UhhK7e4/pxBdZDYr++2C0gVV5NBIAR2gRXgXuZ
+            CQQuyToho5ViJZVX0FN/24aUi5GCXfhaKgVT97yaFQKc7qn5QzVtZ7fNck+RcEq84+uCYnNR4S4p
+            tvO/LD8SX544SSVyDQvGM4i192vi1zzDD+txhTAPyzmG9yaLVAuaUvDHRWdr+akOM3NyelYzhkgx
+            Z6HVvcQF/JnjkRRjRKD5BsqTYL7hogSLkkI/Y5nG9awYX6mozP4eSYcyquaHTi6XlJ2/qnWWaz7p
+            R/HrgBG3CFUF6tKJFPfGvS2XHwECgYEA1MtOlApOEgvT6FG5pyQAfe56LWP+JrzVdhWjFtgSMd0E
+            2GceYyoQupWcQaAR8wPU9wtrU1B69+kxTPPQiR3BKIOOLeZqqJqg3A4dm7WDJ2jIuQxDD1peaVq4
+            KaHmlEhjWoXd/hDXeAkn4M0oF24tXVq+pelCBt0NgnmVUBUaSscCgYEAsI6aaGgX38PuFQaUGfdR
+            jbF+YlO7gv9z0bOvgzV7ElsCTPG5UJO0lqjhKtnr2oroaMMX1rzw4QWz0Wo4l0NbaBWa14nak/EM
+            eM4gutNTVvC1OUde8+ZW7k1ZtWPEEaW6Bd39pSUHlGi4NgccyUBzXSDwVG3KJpv5wCSOpaqNapEC
+            gYEAimgulQXa38wHqg02Jyu4kjCCEXH/hiy+3w6VxK8Hrp0moKb50eAzf1j+iITYB+vPIlywE0G+
+            qe9oXLgdRIIw9+wRl3NOnpns1RTtVzEJvKFgJVR/bcYGsJoMPTAMLRikXuXBjZZgv7ec05A9angE
+            U7tJU9rTUmmHdv0kDDGdp1MCgYEAlEJbhRsMGTpVXdCVYyycjiijIXyAtGNA5bJGyx6Ix4Qm7Wf6
+            nqA6AF22Hx66AF2vBfH1vbwRZlQ8iLjy5oqIYmHqEd7P7nV3bKZjM58rl5EwDPZS1Oryys+najtp
+            tQv+ptigGyJ6N/Sr46qbUKBPf7+eMLe1DjDiS6gnJRSQBhECgYBj54E8Mj4vbSXqU3Hl0EqnT5+i
+            1VlKNUK3v5mSLXzXqyjc35Q6ftw78I4XdlGhm2mmXCezq19PTvd+X1DC6JA4ZLQVyNm+ezjR4AXw
+            x46yCbbvQW1NuMXprrg6Zs7RGMyCoGU1SJ0bYhyUuL20VJTfUVjonbLmRzM7bZIoBv0LMg==
+
+            -----END RSA PRIVATE KEY-----" > ssh_key
+            chmod 600 ssh_key
+        - name: SSH into server and run commands
+          run: |
+           ssh -i ssh_key -o StrictHostKeyChecking=no ubuntu@ec2-13-213-18-81.ap-southeast-1.compute.amazonaws.com
+           mkdir phyomawko
