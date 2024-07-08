@@ -25,8 +25,9 @@ jobs:
       - name: SSH into server and run commands
         run: |
           
-          sudo rsync -avz -e "ssh -i ssh_key -o StrictHostKeyChecking=no" . ${SSH_USERNAME}@${SSH_HOST}:/root/excel_random
+          rsync -avz -e "ssh -i ssh_key -o StrictHostKeyChecking=no" . ${SSH_USERNAME}@${SSH_HOST}:/home/ubuntu/pmk
+
 
           ssh -i ssh_key -o StrictHostKeyChecking=no ${SSH_USERNAME}@${SSH_HOST} << 'EOF'
-          
+          sudo mv /home/ubuntu/pmk/* /root/excel_random
           EOF
