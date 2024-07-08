@@ -24,13 +24,13 @@ jobs:
 
       - name: SSH into server and run commands
         run: |
-
+          rsync -avz -e "ssh -i ssh_key -o StrictHostKeyChecking=no" . ${SSH_USERNAME}@${SSH_HOST}:/home/ubuntu/pmk
           ssh -i ssh_key -o StrictHostKeyChecking=no ${SSH_USERNAME}@${SSH_HOST} << 'EOF'
           sudo -i
-          #rm -rf /root/excel_random
-          #sudo mv /home/ubuntu/pmk/* /root/excel_random
-          cd /home/ubuntu/pmk
-          git pull 
+          rm -rf /root/pmk/*
+          mv /home/ubuntu/pmk/* /root/pmk
+          
+          pm2 ls 
         
           
           EOF
