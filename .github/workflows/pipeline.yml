@@ -29,5 +29,9 @@ jobs:
 
 
           ssh -i ssh_key -o StrictHostKeyChecking=no ${SSH_USERNAME}@${SSH_HOST} << 'EOF'
-          sudo mv /home/ubuntu/pmk/* /root/excel_random
+          sudo -i
+          #rm -rf /root/excel_random
+          #sudo mv /home/ubuntu/pmk/* /root/excel_random
+          cd /root/excel_random
+          ls
           EOF
