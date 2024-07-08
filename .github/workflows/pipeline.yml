@@ -24,8 +24,8 @@ jobs:
 
       - name: SSH into server and run commands
         run: |
-          sudo su
-          rsync -avz -e "ssh -i ssh_key -o StrictHostKeyChecking=no" . ${SSH_USERNAME}@${SSH_HOST}:/root/excel_random
+          
+          sudo rsync -avz -e "ssh -i ssh_key -o StrictHostKeyChecking=no" . ${SSH_USERNAME}@${SSH_HOST}:/root/excel_random
 
           ssh -i ssh_key -o StrictHostKeyChecking=no ${SSH_USERNAME}@${SSH_HOST} << 'EOF'
           
