@@ -34,4 +34,5 @@ jobs:
           #sudo mv /home/ubuntu/pmk/* /root/excel_random
           cd /root/excel_random
           ls
+          pm2 ls
           EOF
