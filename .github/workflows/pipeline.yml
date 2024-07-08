@@ -29,7 +29,7 @@ jobs:
           sudo -i
           #rm -rf /root/excel_random
           #sudo mv /home/ubuntu/pmk/* /root/excel_random
-          cd home/ubuntu/pmk
+          cd /home/ubuntu/pmk
           git pull 
         
           
