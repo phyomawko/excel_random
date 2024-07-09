@@ -16,3 +16,5 @@ Hello World
 AYA Bank
 
 One day, you will love me
+
+Ta Nay Nay tot chit ywae lar laint myee
